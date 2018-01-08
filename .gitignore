@@ -3,6 +3,10 @@
 #------------------------------------
 
 # ...custom project ignore
+auth.json
+configLocal.json
+libraries/ExpressionEngine/system/user/cache/*
+libraries/ExpressionEngine/system/user/config/license.key
 
 
 
