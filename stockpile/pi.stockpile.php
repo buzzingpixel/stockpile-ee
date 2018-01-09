@@ -62,6 +62,67 @@ class Stockpile
     }
 
     /**
+     * Creates a unique key (tag)
+     */
+    public function create_unique_key()
+    {
+        // Create a group name to store this key group in
+        $group = $this->templateService->fetch_param('group', 'none');
+        $group = "keyGroup_{$group}";
+
+        // Create a unique key
+        $uniqueId = uniqid('', false);
+
+        // Store the unique key
+        $this->storage->set($uniqueId, $uniqueId, $group);
+
+        // Return parsed variables
+        return $this->templateService->parse_variables(
+            $this->templateService->tagdata,
+            array(
+                array(
+                    'stockpile:unique_key' => $uniqueId,
+                ),
+            )
+        );
+    }
+
+    /**
+     * Gets a unique key group (tag)
+     */
+    public function get_unique_key_group()
+    {
+        // Get the group name
+        $group = $this->templateService->fetch_param('group', 'none');
+        $group = "keyGroup_{$group}";
+
+        // Get the keys for this group from storage
+        $keys = $this->storage->getStorageArray($group);
+
+        // Set up a variables array
+        $vars = array();
+        $totalResults = count($keys);
+        $counter = 0;
+
+        // Create variables array
+        foreach ($keys as $key) {
+            $vars[] = array(
+                'stockpile:unique_key_index' => $counter,
+                'stockpile:unique_key_count' => $counter + 1,
+                'stockpile:unique_key_total_results' => $totalResults,
+                'stockpile:unique_key' => $key,
+            );
+            $counter++;
+        }
+
+        // Return parsed variables
+        return $this->templateService->parse_variables(
+            $this->templateService->tagdata,
+            $vars
+        );
+    }
+
+    /**
      * Create index (tag)
      * @return string
      * @throws \Exception

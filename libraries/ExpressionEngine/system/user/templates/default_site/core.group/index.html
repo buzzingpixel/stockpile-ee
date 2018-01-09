@@ -5,8 +5,36 @@
     {stockpile:test_var}<br>
 {/exp:stockpile:get}
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
+-------------------
+<br><br><br><br><br>
 
 {exp:stockpile:info}
     {stockpile:test:last_index}
 {/exp:stockpile:info}
+
+<br><br><br><br><br>
+-------------------
+<br><br><br><br><br>
+
+{exp:stockpile:create_unique_key parse="inward"}
+    {exp:stockpile:add key="{stockpile:unique_key}" var_name="test_var"}thing{/exp:stockpile:add}
+{/exp:stockpile:create_unique_key}
+
+<br><br><br><br><br>
+-------------------
+<br><br><br><br><br>
+
+{exp:stockpile:create_unique_key parse="inward"}
+    {exp:stockpile:add key="{stockpile:unique_key}" var_name="test_var"}asdf{/exp:stockpile:add}
+{/exp:stockpile:create_unique_key}
+
+<br><br><br><br><br>
+-------------------
+<br><br><br><br><br>
+
+{exp:stockpile:get_unique_key_group parse="inward"}
+    {exp:stockpile:get key="{stockpile:unique_key}"}
+        {stockpile:test_var}<br>
+    {/exp:stockpile:get}<br><br>
+{/exp:stockpile:get_unique_key_group}
