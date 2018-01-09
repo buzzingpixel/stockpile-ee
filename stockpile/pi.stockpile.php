@@ -182,4 +182,26 @@ class Stockpile
             $newArray
         );
     }
+
+    /**
+     * Get stockpile info
+     */
+    public function info()
+    {
+        // Create variables array
+        $vars = array();
+
+        // Iterate through each storage set and set up info variables
+        foreach ($this->storage->getStorageArray() as $key => $val) {
+            $count = count($val);
+            $vars["stockpile:{$key}:total"] = $count;
+            $vars["stockpile:{$key}:last_index"] = $count - 1;
+        }
+
+        // Return parsed variables
+        return $this->templateService->parse_variables(
+            $this->templateService->tagdata,
+            array($vars)
+        );
+    }
 }

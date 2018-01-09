@@ -84,4 +84,16 @@ class Storage
         // Return the value
         return $this->storage[$namespace][$key];
     }
+
+    /**
+     * Get storage array
+     * @param string $namespace
+     * @return array
+     */
+    public function getStorageArray($namespace = 'storage')
+    {
+        return isset($this->storage[$namespace]) ?
+            $this->storage[$namespace] :
+            array();
+    }
 }
