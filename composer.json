@@ -1,6 +1,6 @@
 {
     "name": "buzzingpixel/stockpile-ee",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "",
     "type": "ee-add-on",
     "authors": [
@@ -21,10 +21,10 @@
         }
     ],
     "require": {
-        "roave/security-advisories": "dev-master"
     },
     "require-dev": {
-        "tjdraper/expressionengine": "4.0.4"
+        "tjdraper/expressionengine": "4.0.4",
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "psr-0": {
